@@ -1,0 +1,25 @@
+// PATH SUM FROM ROOT TO LEAF NODE EQUALS TO A PARTICULAR SUM 
+//Given the root of a binary tree and an integer targetSum, 
+//return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+
+//CODE IN C++
+
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root==NULL)
+        {
+           return false;
+        }
+        if(root->left==NULL && root->right==NULL)
+        {
+            if (targetSum-(root->val)==0)
+                return true;
+            else return false;
+        }
+        else
+        {
+           return hasPathSum(root->left,targetSum-(root->val))||hasPathSum(root->right,targetSum-(root->val));
+        }
+    }
+};
