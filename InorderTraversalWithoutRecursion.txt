@@ -1,0 +1,36 @@
+
+//Binary Tree Inorder Traversal Without Recursion-- Leet Code Solution
+
+
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+       vector <int> vc;
+        stack <TreeNode*> st;
+        TreeNode* curr;
+        curr=root;
+        while(curr)
+        {
+            st.push(curr);
+            curr=curr->left;
+        }
+        while(!st.empty())
+        {
+            curr=st.top();
+            st.pop();
+            vc.push_back(curr->val);
+            if(curr->right!=NULL)
+            {
+                curr=curr->right;
+                while(curr)
+                {
+                    st.push(curr);
+                    curr=curr->left;
+                }
+            }
+        }
+        return vc;
+    }
+    
+};
