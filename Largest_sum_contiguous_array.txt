@@ -1,0 +1,39 @@
+//Largest Sum Contiguous Subarray Sum return
+
+//-------------------------------------------------
+
+//Recursion Approch Used
+
+//Code in C++
+
+class Solution{
+    public:
+    int maxy;
+    // arr: input array
+    // n: size of array
+    //Function to find the sum of contiguous subarray with maximum sum.
+    Solution()
+    {
+        maxy=-100000;
+    }
+    int maxSubarraySum(int arr[], int n)
+    {
+        int t= maSubarraySum(arr, n);
+        return maxy;
+    }
+    int maSubarraySum(int arr[], int n){
+        
+        if(n<=0)
+        {
+            return 0;
+        }
+        else
+        {
+            int l=max(arr[n-1],arr[n-1]+maSubarraySum(arr,n-1));
+            int r=max(l,maxy);
+            maxy=r;
+            return l;
+        }
+        
+    }
+};
