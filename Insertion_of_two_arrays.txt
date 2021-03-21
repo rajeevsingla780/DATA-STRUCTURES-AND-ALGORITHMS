@@ -1,0 +1,38 @@
+//Intersection of Two Arrays
+
+//-------------------------------------------------------------------------------
+
+//CODE IN C++
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        
+        unordered_map<int,int> tu;
+        vector <int> vc;
+        for(int i=0;i<nums1.size();i++)
+        {
+            if(tu.find(nums1[i])==tu.end())
+            {
+                tu[nums1[i]]=1;
+            }
+            else
+            {
+                tu[nums1[i]]+=1;
+            }
+        }
+        
+        for(int i=0;i<nums2.size();i++)
+        {
+            if(tu.find(nums2[i])!=tu.end())
+            {
+                if (tu[nums2[i]]>0)
+                {
+                    tu[nums2[i]]-=1;
+                    vc.push_back(nums2[i]);
+                }
+            }
+        }
+            
+        return vc;
+    }
+};
