@@ -1,0 +1,50 @@
+//Minimize the Heights II    
+//Given an array arr[] denoting heights of N towers and a positive integer K, you have to modify the height of each tower either by increasing or decreasing them by K 
+//only once. After modifying, height should be a non-negative integer. 
+//Find out what could be the possible minimum difference of the height of shortest and longest towers after you have modified each tower.
+
+//Concept Tagda Use Ho rha hai
+//To refer Videolink-https://youtu.be/4-tZSsBh_Gc
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//My Code-
+
+class Solution {
+  public:
+    int getMinDiff(int arr[], int n, int k) {
+        vector <pair<int,int> > vect1;
+        vector <int> vect2; //To have count of every element
+        int elements=0;
+        int ans=INT_MAX;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]-k>=0)
+             vect1.push_back(make_pair(arr[i]-k,i));
+             vect1.push_back(make_pair(arr[i]+k,i));
+             vect2.push_back(0);
+        }
+        sort(vect1.begin(),vect1.end());
+        //Applying Sliding Window Concept ye imp hai 
+        int j=0;
+        for(int i=0;i<vect1.size();i++)
+        {
+            if(vect2[vect1[i].second]==0)
+                elements++;
+                vect2[vect1[i].second]++;
+            
+            if(elements==n)
+            {
+                if(ans>(vect1[i].first-vect1[j].first))
+                ans=vect1[i].first-vect1[j].first;
+                vect2[vect1[j].second]--;
+                if(vect2[vect1[j].second]==0)
+                elements--;
+                if(elements==n)
+                    i--;
+                j++;
+            }
+    }
+    return ans;
+    }
+};
