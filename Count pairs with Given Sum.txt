@@ -1,0 +1,33 @@
+//Count pairs with Given Sum
+
+//-----------------------------------------------------------------
+
+class Solution{   
+public:
+    int getPairsCount(int arr[], int n, int k) {
+        unordered_map<int,int> tu;
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            if(tu.find(arr[i])==tu.end())
+            tu[arr[i]]=1;
+            else
+            tu[arr[i]]++;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(tu.find(k-arr[i])!=tu.end())
+            {
+            count+=tu[k-arr[i]];
+            if(k-arr[i]==arr[i])
+            count--;
+            }
+        }
+        return count/2;
+    }
+};
+
+
+
+//https://practice.geeksforgeeks.org/problems/u5022/1
+Video Link-https://youtu.be/Tqa9pilFrhY
