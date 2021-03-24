@@ -1,0 +1,34 @@
+//Common elements in Three Sorted List
+
+//--------------------------------
+//Solution in cpp
+ class Solution
+{
+    public:    
+       vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+           unordered_map<int,int> tu;
+           vector<int> vc;
+           for(int i=0;i<n1;i++)
+           if(tu.find(A[i])==tu.end())
+           tu[A[i]]=1;
+    
+           for(int i=0;i<n2;i++)
+           {
+               if(tu.find(B[i])!=tu.end())
+               {
+                   tu[B[i]]=2;
+               }
+           }
+           for(int i=0;i<n3;i++)
+           {
+                if(tu.find(C[i])!=tu.end() && tu[C[i]]==2)
+                {
+                    tu.erase(C[i]);
+                    vc.push_back(C[i]);
+                }
+           }
+           return vc;
+        }
+};
+//https://practice.geeksforgeeks.org/problems/common-elements1132/1
