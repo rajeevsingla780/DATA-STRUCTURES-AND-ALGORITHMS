@@ -1,0 +1,28 @@
+//Search element in a matrix (Love Babber)
+ 
+
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int rowno=0;
+        bool val=false;
+        int size_of_col=matrix[0].size();
+        for(int i=0;i<matrix.size();i++)
+        {
+            if(target<= matrix[i][size_of_col-1])
+            {
+                if(target==matrix[i][size_of_col-1])
+                    val= true;
+                else
+                    rowno=i;
+                break;
+            }
+        }
+        if(find(matrix[rowno].begin(),matrix[rowno].end(),target)!=matrix[rowno].end())
+        {
+            val=true;
+        }
+        return val;
+    }
+};
