@@ -1,0 +1,27 @@
+//Sorted matrix
+//https://practice.geeksforgeeks.org/problems/sorted-matrix2333/1
+//-----------------------------------------------------------------------------
+class Solution {
+  public:
+    vector<vector<int>> sortedMatrix(int N, vector<vector<int>> Mat) {
+        vector<int>vc;
+        for(int i=0;i<N;i++)
+        {
+            for(int j=0;j<N;j++)
+            {
+                vc.push_back(Mat[i][j]);
+            }
+        }
+        sort(vc.begin(),vc.end());
+        int t=0;
+        for(int i=0;i<N;i++)
+        { 
+            for(int j=0;j<N;j++)
+            {
+                Mat[i][j]=vc[t];
+                t++;
+            }
+        }
+        return Mat;
+    }
+};
