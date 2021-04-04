@@ -1,0 +1,24 @@
+Permutations of a given string  --- https://practice.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1
+
+//-------------------------------------------------------------------------------------------------------------------
+
+class Solution
+{
+	public:
+		vector<string>find_permutation(string S)
+		{
+		    vector<string>str;
+		    string s2=S;
+		    str.push_back(S);
+		    next_permutation(S.begin(),S.end());
+		    str.push_back(S);
+		    while(S!=s2)
+		    {
+		         next_permutation(S.begin(),S.end());
+		         if(S!=s2)
+		         str.push_back(S);
+		    }
+		    sort(str.begin(),str.end());
+		    return str;
+		}
+};
