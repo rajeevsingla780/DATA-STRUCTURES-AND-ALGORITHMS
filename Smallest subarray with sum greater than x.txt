@@ -1,0 +1,38 @@
+//Smallest subarray with sum greater than x
+
+//code in C++
+
+class Solution{
+  public:
+
+    int sb(int arr[], int n, int x)
+    {
+        int a=0;
+        int sum=0;
+        int j=0,i=0;
+        int min=1000000;
+        while(i!=n)
+        {
+            if(sum<=x)
+            {
+            sum+=arr[i];
+            a++;
+            i++;
+            }
+            if(sum>x)
+            {
+                if(min>a)
+                    min=a;
+                sum-=arr[j];
+                j++;
+                a--;
+                if(sum>x)
+                {
+                     if(min>a)
+                        min=a;
+                }
+            }
+        }
+        return min;
+    }
+};
