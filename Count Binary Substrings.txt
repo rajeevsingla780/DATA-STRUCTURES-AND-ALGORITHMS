@@ -1,0 +1,39 @@
+//Count Binary Substrings
+
+//code in c++
+//https://leetcode.com/problems/count-binary-substrings/
+//------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        int prevcount=0;
+        int currentcount=1;
+        int totalcount=0;
+        char prevchar=s[0];
+        char currentchar;
+        int n=s.length();
+        if(n<2)
+        {
+            return 0;
+        }
+        for(int i=1;i<n;i++)
+        {
+            currentchar=s[i];
+            if(prevchar==currentchar)
+            {
+                
+                currentcount++;
+            }
+            else
+            {
+                totalcount=totalcount+min(prevcount,currentcount);
+                prevcount=currentcount;
+                currentcount=1; 
+            }
+            prevchar=currentchar;
+        }
+        totalcount+=min(prevcount,currentcount);
+        return totalcount;
+    }
+};
