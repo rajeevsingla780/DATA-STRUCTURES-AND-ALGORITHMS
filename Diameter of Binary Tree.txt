@@ -1,0 +1,42 @@
+//Diameter of Binary Tree
+//https://leetcode.com/problems/diameter-of-binary-tree/
+//----------------------------------------------------------------
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+int maxy;
+class Solution {
+public:
+    int maxy;
+    Solution()
+    {
+        maxy=0;
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        int a=diameterOfBinaryTreecall(root);
+        
+        return maxy;
+    }
+    int diameterOfBinaryTreecall(TreeNode* root) {
+        
+        if(root==NULL)
+            return 0;
+        else
+        {
+            int x=diameterOfBinaryTreecall(root->left);
+            int y=diameterOfBinaryTreecall(root->right);
+            if(maxy<x+y)
+                maxy=x+y;
+            return max(x,y)+1;
+        }
+    }
+};
