@@ -1,0 +1,47 @@
+//Level Order Traversal
+
+//-----------------------------------------------------
+
+/* A binary tree Node
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+ */
+
+
+class Solution
+{
+    public:
+    //Function to return the level order traversal of a tree.
+    vector<int> levelOrder(Node* node)
+    {
+      vector<int> vec1;
+      queue <Node*> q1;
+      q1.push(node);
+      while(!q1.empty())
+      {
+          struct Node* p1=q1.front();
+          q1.pop();
+          vec1.push_back(p1->data);
+          if(p1->left!=NULL)
+          {
+              q1.push(p1->left);
+          }
+          if(p1->right!=NULL)
+          {
+              q1.push(p1->right);
+          }
+          
+      }
+      return vec1;
+    }
+};
