@@ -1,0 +1,21 @@
+//Find Missing And Repeating 
+//https://practice.geeksforgeeks.org/problems/find-missing-and-repeating2512/1
+
+class Solution{
+public:
+    vector<int>findTwoElement(int *arr, int len) {
+        long long int n=len;
+        long long int sum_n=(n*(n+1)/2);
+        long long int sum2_n=(n*(n+1)*(2*n+1)/6);
+        long long int x,y;
+        long long int   def_sum=0,def2_sum=0;
+        
+        for(int i=0;i<n;i++){
+            sum_n-=(long long int)arr[i];
+            sum2_n-=((long long int)arr[i]*(long long int)arr[i]);
+        }
+        x=((sum_n)+((sum2_n)/(sum_n)))/2;
+        y=x-(sum_n);
+        return {y,x};
+    }
+};
