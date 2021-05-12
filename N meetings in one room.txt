@@ -1,0 +1,33 @@
+
+
+//N meetings in one room
+//https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1
+
+class Solution
+{
+    public:
+    //Function to find the maximum number of meetings that can
+    //be performed in a meeting room.
+    static bool func(pair<int,int> a,pair<int,int> b){
+            return a.second<b.second;
+    }
+    int maxMeetings(int start[], int end[], int n)
+    {
+        // Your code here
+        int count=1;
+        int t=0;
+        vector<pair<int,int>> vc(n);
+        for(int i=0;i<n;i++){
+            vc[i]={start[i],end[i]};
+        }
+        sort(vc.begin(),vc.end(),func);
+       
+        for(int i=1;i<n;i++){
+            if(vc[i].first>vc[t].second){
+                count++;
+                t=i;
+            }
+        }
+        return count;
+    }
+};
