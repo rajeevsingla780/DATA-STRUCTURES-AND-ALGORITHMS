@@ -1,0 +1,40 @@
+//Product array puzzle
+//https://practice.geeksforgeeks.org/problems/product-array-puzzle4525/1
+
+
+class Solution{
+  public:
+    // nums: given vector
+    // return the Product vector P that hold product except self at each index
+    vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
+       long long int product,prod=1; 
+       vector<long long int> vc1;
+       vector<long long int> vc2;
+       vector<long long int> vc3(n);
+        if(n==1){
+            return {1};
+        }
+        if(n==0){
+            return {};
+        }
+        if(n==2){
+            return {nums[1],nums[0]};
+        }
+        for(int i=0;i<n;i++){
+            vc1.push_back(prod*nums[i]);
+            prod=prod*nums[i];
+        }  
+        prod=1;
+        for(int i=n-1;i>0;i--){
+            vc2.push_back(prod*nums[i]);
+            prod=prod*nums[i];
+        }  
+        vc3[n-1]=vc1[n-2];
+        vc3[0]=vc2[n-2];
+        for(int i=1;i<n-1;i++){
+            product=vc1[i-1]*vc2[n-i-2];
+            vc3[i]=product;
+        }
+        return vc3;
+    }
+};
