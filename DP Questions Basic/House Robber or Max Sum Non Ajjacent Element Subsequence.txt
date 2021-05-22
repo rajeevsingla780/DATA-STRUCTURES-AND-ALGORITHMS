@@ -1,0 +1,16 @@
+//House Robber or Max Sum Non Ajjacent Element Subsequence
+//https://leetcode.com/problems/house-robber/
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int includx=nums[0];
+        int excludx=0;
+        for(int i=1;i<nums.size();i++){
+            int temp=includx;
+            includx=excludx+nums[i];
+            excludx=max(temp,excludx);
+        }
+        return max(includx,excludx);
+    }
+};
