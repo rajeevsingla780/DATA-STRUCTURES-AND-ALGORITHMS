@@ -1,0 +1,36 @@
+//Reach a Number
+//https://leetcode.com/problems/reach-a-number/
+
+
+class Solution {
+public:
+    
+    int reachNumber(int D) {
+        D=abs(D);
+        int steps=0;
+        int totalsum=0;
+        while(totalsum<D){
+            steps++;
+            totalsum+=steps;
+        }
+        if(totalsum==D){
+            return steps;
+        }
+        else{
+            int diff=(totalsum-D);
+            if(diff%2==0){
+                return steps;
+            }
+            else{
+                if((steps+1)%2==1){
+                    return steps+1;
+                }
+                else{
+                    return steps+2;
+                }
+            }
+            
+        }
+        
+    }
+};
